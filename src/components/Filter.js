@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { TextField } from "@mui/material";
 
-export default class SahredSearchInput extends React.Component {
+export default class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();

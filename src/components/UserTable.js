@@ -9,12 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import Paper from "@mui/material/Paper";
 import { visuallyHidden } from "@mui/utils";
-import { getComparator } from "../../shared/helpers/sortHelpers";
-import { userColumns } from "../../columns/userColumns";
+import { getComparator } from "../shared/helpers/sortHelpers";
 import { Button, TextField } from "@mui/material";
 import { Delete, Edit, Save } from "@mui/icons-material";
 
-export default class SahredTable extends React.Component {
+export default class UserTable extends React.Component {
   state = {
     order: "asc",
     orderBy: "",
@@ -37,7 +36,7 @@ export default class SahredTable extends React.Component {
 
   render() {
     const { order, orderBy } = this.state;
-    const { rows, toEditProp, saveUsersHandler } = this.props;
+    const { rows, columns, toEditProp, saveUsersHandler } = this.props;
 
     return (
       <Box sx={{ width: "100%" }}>
@@ -50,7 +49,7 @@ export default class SahredTable extends React.Component {
             >
               <TableHead>
                 <TableRow>
-                  {userColumns.map((headCell) => (
+                  {columns?.map((headCell) => (
                     <TableCell
                       key={headCell.id}
                       align={headCell.numeric ? "right" : "left"}
@@ -78,6 +77,9 @@ export default class SahredTable extends React.Component {
               </TableHead>
               <TableBody>
                 {rows
+                  ?.map((rowToMap) => {
+                    return { ...rowToMap, city: rowToMap.address.city };
+                  })
                   ?.sort(getComparator(order, orderBy))
                   ?.map((row, index) => {
                     const labelId = `enhanced-table-checkbox-${index}`;
@@ -93,9 +95,10 @@ export default class SahredTable extends React.Component {
                           this.handleClick(event, "see", row);
                         }}
                       >
-                        {userColumns?.map((column) => {
+                        {columns?.map((column) => {
                           return (
                             <TableCell
+                              sx={{ py: "8px" }}
                               key={column.id}
                               align="left"
                               component="th"
@@ -104,8 +107,9 @@ export default class SahredTable extends React.Component {
                             >
                               {toEditProp?.id === row.id ? (
                                 <TextField
-                                  onClick={(event)=>{
-                                    event.stopPropagation()
+                                  sx={{ maxHeight: "30px", width: 'auto' }}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
                                   }}
                                   autoFocus
                                   required
@@ -116,15 +120,13 @@ export default class SahredTable extends React.Component {
                                   fullWidth
                                   variant="standard"
                                   defaultValue={row[column.id]}
-                                  onChange={
-                                    (event) => {
-                                      this.props.setStateToSave(
-                                        event,
-                                        row,
-                                        column
-                                      );
-                                    }
-                                  }
+                                  onChange={(event) => {
+                                    this.props.setStateToSave(
+                                      event,
+                                      row,
+                                      column
+                                    );
+                                  }}
                                 />
                               ) : (
                                 row[column.id]

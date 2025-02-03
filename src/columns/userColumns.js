@@ -17,4 +17,10 @@ export const userColumns = [
     disablePadding: false,
     label: "Email",
   },
+  {
+    id: "city",
+    numeric: false,
+    disablePadding: false,
+    label: "City",
+  },
 ];
