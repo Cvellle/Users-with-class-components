@@ -3,6 +3,10 @@
 ## Terminal instructions - install and start
 
 ```
+git clone https://github.com/Cvellle/Users-with-class-components.git
+```
+
+```
 npm install
 ```
 
