@@ -107,7 +107,7 @@ export default class UserTable extends React.Component {
                             >
                               {toEditProp?.id === row.id ? (
                                 <TextField
-                                  sx={{ maxHeight: "30px", width: 'auto' }}
+                                  sx={{ maxHeight: "30px", width: "auto" }}
                                   onClick={(event) => {
                                     event.stopPropagation();
                                   }}
