@@ -7,6 +7,10 @@ git clone https://github.com/Cvellle/Users-with-class-components.git
 ```
 
 ```
+cd Users-with-class-components
+```
+
+```
 npm install
 ```
 
