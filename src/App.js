@@ -28,9 +28,11 @@ export default class App extends React.Component {
 
   componentDidMount() {
     getUsers()
-      .then((users) => {
+      .then((usersResponse) => {
         this.setState({
-          users,
+          users: usersResponse?.map((rowToMap) => {
+            return { ...rowToMap, city: rowToMap.address.city };
+          }),
           usersFetched: true,
         });
       })

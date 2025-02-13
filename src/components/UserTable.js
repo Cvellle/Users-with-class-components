@@ -77,9 +77,6 @@ export default class UserTable extends React.Component {
               </TableHead>
               <TableBody>
                 {rows
-                  ?.map((rowToMap) => {
-                    return { ...rowToMap, city: rowToMap.address.city };
-                  })
                   ?.sort(getComparator(order, orderBy))
                   ?.map((row, index) => {
                     const labelId = `enhanced-table-checkbox-${index}`;
