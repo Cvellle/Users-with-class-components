@@ -3,13 +3,14 @@ import * as React from "react";
 import { TextField } from "@mui/material";
 
 export default class Filter extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.textInput = React.createRef();
   }
 
   valueHandler = () => {
     const { textHandler } = this.props;
+    clearTimeout(this.getDataTimeout);
     textHandler(this.textInput.current);
   };
 
