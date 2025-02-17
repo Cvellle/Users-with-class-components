@@ -10,7 +10,6 @@ export default class Filter extends React.Component {
 
   valueHandler = () => {
     const { textHandler } = this.props;
-    clearTimeout(this.getDataTimeout);
     textHandler(this.textInput.current);
   };
 
